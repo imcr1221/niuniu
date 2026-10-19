@@ -77,41 +77,26 @@ document.addEventListener('click',e=>{let s=e.target.closest('[data-section]');i
 
  document.querySelector('#readInstruction').addEventListener('click',()=>say(document.querySelector('#activityDesc').textContent));
 // 两个课程共用同一个音色选择（在同一网站域名下保存）。
-const FARM_VOICE_KEY='farmAnimalsChineseVoice_v1';
-let farmVoiceChoice='';
-try { farmVoiceChoice=localStorage.getItem(FARM_VOICE_KEY)||''; } catch(e) {}
-function farmVoices(){return (window.speechSynthesis?.getVoices()||[]).filter(v=>/^zh([_-]|$)/i.test(v.lang));}
-function farmSpeak(text){
+// ===== 朗读：优先播放预生成的 Edge TTS 音频，找不到则回退浏览器语音 =====
+function fallbackSpeak(text){
   if(!('speechSynthesis' in window))return;
   window.speechSynthesis.cancel();
   const u=new SpeechSynthesisUtterance(text);
   u.lang='zh-CN';u.rate=0.83;
-  const chosen=farmVoices().find(v=>v.voiceURI===farmVoiceChoice);
-  if(chosen)u.voice=chosen; // 未选择时沿用浏览器默认声音
   window.speechSynthesis.speak(u);
 }
-function farmVoiceUI(){
-  const host=document.createElement('div');host.className='farm-voice-tools';
-  host.style.cssText='display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:9px;margin:10px auto 16px;padding:10px;border-radius:16px;background:#fff9e8;border:2px solid #e7d7ad;max-width:950px;color:#654323';
-  const label=document.createElement('label');label.textContent='🎤 中文朗读声音：';label.htmlFor='farmVoiceSelect';label.style.fontWeight='bold';
-  const select=document.createElement('select');select.id='farmVoiceSelect';select.style.cssText='max-width:100%;min-width:170px;padding:9px;border-radius:10px;border:1px solid #b9a47b;background:white;font:inherit';
-  const test=document.createElement('button');test.type='button';test.textContent='🔊 试听';test.style.cssText='padding:9px 15px;border-radius:12px;border:1px solid #d9a458;background:#ffdc80;color:#593818;font:inherit;cursor:pointer';
-  const note=document.createElement('small');note.textContent='两个课程选择同一声音；仅在同一浏览器和网站下自动同步。';note.style.cssText='width:100%;text-align:center;font-size:12px';
-  host.append(label,select,test,note);
-  const render=()=>{
-    const previous=select.value||farmVoiceChoice;
-    select.replaceChildren();
-    const defaultOpt=new Option('浏览器默认声音','');select.add(defaultOpt);
-    farmVoices().forEach(v=>select.add(new Option(v.name+' ('+v.lang+')',v.voiceURI)));
-    select.value=[...select.options].some(o=>o.value===previous)?previous:'';
-  };
-  select.onchange=()=>{farmVoiceChoice=select.value;try{localStorage.setItem(FARM_VOICE_KEY,farmVoiceChoice)}catch(e){};farmSpeak('你好，小朋友！欢迎来到快乐农场！')};
-  test.onclick=()=>farmSpeak('你好，小朋友！这是小猪，这是小牛。');
-  const anchor=document.querySelector('nav');
-  if(anchor)anchor.parentNode.insertBefore(host,anchor);else document.body.prepend(host);
-  render();
-  if('speechSynthesis' in window)window.speechSynthesis.addEventListener?.('voiceschanged',render);
-  window.addEventListener('storage',e=>{if(e.key===FARM_VOICE_KEY){farmVoiceChoice=e.newValue||'';render();}});
+function farmSpeak(text){
+  if(!text)return;
+  const map=window.TTS_AUDIO||{};
+  const src=map[text];
+  if(src){
+    if(audio){audio.pause();audio=null}
+    const a=new Audio(src);
+    audio=a;
+    a.play().catch(()=>fallbackSpeak(text));
+  }else{
+    console.warn('[TTS] 没有预生成音频，回退浏览器语音：', JSON.stringify(text));
+    fallbackSpeak(text);
+  }
 }
-farmVoiceUI();
 </script></body></html>
