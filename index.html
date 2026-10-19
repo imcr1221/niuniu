@@ -1,22 +1,102 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>中文启蒙小课堂｜一起学中文</title>
-<style>
-:root{--ink:#3c514c;--muted:#72847e;--green:#3b9474;--line:#e5ebe4}*{box-sizing:border-box}body{margin:0;font-family:'Microsoft YaHei','PingFang SC',system-ui,sans-serif;color:var(--ink);background:linear-gradient(160deg,#e8f6ef 0%,#fff9ed 50%,#f8f0ff 100%);min-height:100vh}.wrap{max-width:1100px;margin:auto;padding:24px 18px 55px}.hero{background:#ffffffc9;border:2px solid #ffffff;border-radius:30px;text-align:center;padding:35px 16px 28px;box-shadow:0 12px 35px #66877b16}.emoji{font-size:49px}.hero h1{font-size:clamp(28px,5vw,44px);margin:9px 0;color:#347f67}.hero p{font-size:18px;margin:8px 0;color:#607a6f}.section-title{font-size:24px;margin:32px 4px 16px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}.card{display:flex;flex-direction:column;gap:12px;background:#fff;border:2px solid #e6eee7;border-radius:24px;padding:20px;min-height:250px;text-decoration:none;color:inherit;box-shadow:0 7px 20px #537b6814;transition:transform .18s,border-color .18s}.card.available:hover,.card.available:focus-visible{transform:translateY(-4px);border-color:#73baa0}.card .picture{height:88px;display:flex;justify-content:center;align-items:center;font-size:67px;background:var(--shade,#f1f7e8);border-radius:17px}.card h3{font-size:22px;margin:0}.card p{margin:0;color:#687d74;line-height:1.7;flex:1}.tag{align-self:flex-start;font-size:14px;padding:7px 12px;border-radius:999px;background:#e1f5e9;color:#287653;font-weight:700}.pending{background:#f3f3f3;color:#7d8582}.card.future{opacity:.8}.footer{text-align:center;margin-top:35px;color:#71867b;font-size:14px}@media(max-width:540px){.grid{grid-template-columns:1fr 1fr;gap:10px}.card{padding:12px;min-height:220px;border-radius:18px}.card .picture{height:76px;font-size:49px}.card h3{font-size:18px}.card p{font-size:13px}.hero{padding:25px 12px}.section-title{font-size:21px}}
-/* Keep the animal illustrations within each card, separate from text. */
-.card .picture{width:100%;min-width:0;overflow:hidden;padding:6px 8px;font-size:clamp(22px,3vw,39px);line-height:1.2;white-space:nowrap;letter-spacing:-.06em}
-.card h3,.card p{overflow-wrap:anywhere;word-break:normal}
-.card{min-width:0}
-@media(max-width:540px){.card .picture{font-size:clamp(18px,4.4vw,26px);padding:6px 3px;height:70px;letter-spacing:-.1em}.card{gap:9px}.card h3{font-size:17px}.card p{line-height:1.55}}
-@media(max-width:350px){.grid{grid-template-columns:1fr}.card .picture{font-size:35px}}
-</style>
-</head>
-<body><main class="wrap"><header class="hero"><div class="emoji">🤖 🌈 📚</div><h1>中文启蒙小课堂</h1><p>一起听一听、说一说、玩一玩！</p><p>每天学一点，中文更熟练 🌱</p></header>
-<h2 class="section-title">🌟 我的中文学习主题</h2>
-<div class="grid">
-<a class="card available" href="animal2/index.html"><div class="picture" style="--shade:#eaf6ec">🐷 🐮 🐑 🐴 🐰</div><h3>农场动物（二）</h3><p>认识小猪、小牛、小羊、小马、小兔子，学习“小马在跑”“小兔子在跳”，还有三天互动小游戏。</p><span class="tag">开始学习 →</span></a>
-<a class="card available" href="animal1/index.html"><div class="picture" style="--shade:#fff3df">🐶 🐱 🐥</div><h3>农场动物（一）</h3><p>小狗、小猫、小鸡、小鸭、小老鼠。看视频、听叫声、做游戏。</p><span class="tag">开始学习 →</span></a>
-</div>
-<p class="footer">🌼 一起快乐学中文</p></main></body></html>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>农场动物（二）｜课后复习与作业</title><style>
+:root{--brown:#653516;--blue:#c7eeff;--yellow:#ffdc68;--cream:#fff9e8;--line:#f5d49c;--orange:#ff922a}
+*{box-sizing:border-box}body{margin:0;background:#dcf6ff;color:var(--brown);font-family:'Microsoft YaHei','PingFang SC',system-ui,sans-serif}button{font:inherit;cursor:pointer}button:focus-visible{outline:4px solid #1678df;outline-offset:3px}.wrap{max-width:1240px;margin:auto;padding:0 16px 44px}.mast{height:205px;background:linear-gradient(180deg,#0000 65%,#d6f6ff 100%),url('assets/images/header.jpg') center 42%/cover;display:flex;align-items:center;justify-content:center;border-radius:0 0 28px 28px}.mast h1{margin:0;background:#fff4d5ed;border:4px solid #e3a35c;border-radius:28px;padding:12px 34px;color:#7b3914;text-shadow:1px 2px white;font-size:clamp(29px,4.6vw,48px);box-shadow:0 5px 0 #cf9a4a}.main-tabs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 auto 14px;max-width:1000px}.main-tab{min-height:92px;border-radius:28px;background:#eaf9ff;border:3px solid #a7ddf7;font-size:clamp(20px,3.1vw,30px);font-weight:900;color:#613112;box-shadow:0 5px 0 #b6dff2}.main-tab.selected{background:#ffe08b;border-color:#ffae2c;box-shadow:0 5px 0 #ecac3b}.main-tab .symbol{font-size:36px;vertical-align:middle;margin-right:12px}.subtabs{display:flex;gap:12px;overflow-x:auto;padding:10px 2px 15px;scrollbar-width:thin}.tile{flex:1 0 145px;min-height:138px;border:3px solid #d4ebfa;background:#f9fdff;border-radius:25px;color:#653516;box-shadow:0 5px 0 #b7dfef;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:12px}.tile.selected{background:#fff1bb;border-color:#f7ad30;box-shadow:0 5px 0 #dca147}.tile .em{font-size:50px}.tiletext{font-weight:800;font-size:17px;text-align:center}.panel{background:var(--cream);border:4px solid #f5dba9;border-radius:34px;padding:22px;margin-top:7px;box-shadow:0 7px 0 #c8e8f4}.panel-head{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.panel-head h2{margin:0;font-size:clamp(24px,3vw,33px)}.hint{color:#795e4a;line-height:1.7;font-size:16px}.action,.back,.number{border:2px solid #f1b34e;background:#ff9b29;color:white;border-radius:22px;font-weight:850;padding:12px 20px;min-height:52px}.action.secondary,.back{background:#fff3ce;color:#805018}.actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:16px 0}.cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:13px;margin:20px 0}.animal{background:white;border:3px solid #ffdf91;border-radius:22px;padding:9px;overflow:hidden;min-width:0;display:flex;flex-direction:column;align-items:center;gap:6px}.animal img{display:block;width:100%;height:180px;object-fit:cover;border-radius:13px}.animal strong{font-size:19px;color:#633916}.animal.good{border-color:#37b06e;background:#eaffec}.animal.bad{border-color:#ef8171;background:#fff0eb}.question{text-align:center;font-size:clamp(21px,3vw,28px);font-weight:850;margin:12px auto}.feedback{min-height:36px;text-align:center;font-size:20px;font-weight:bold;color:#278357}.numbers{display:flex;flex-wrap:wrap;gap:13px;justify-content:center;margin:20px 0}.number{font-size:27px;min-width:66px;min-height:66px;background:#fff6d7;color:#8c4819}.number:hover,.animal:hover{border-color:#ff9d35}.bigscene{width:100%;display:block;max-height:610px;object-fit:contain;margin:15px auto;border-radius:18px;background:white}.videogrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:15px 0}.videoitem{border:2px solid #f2d79c;background:#fffdf5;border-radius:23px;padding:16px;text-align:center}.videoitem video{width:100%;aspect-ratio:16/9;border-radius:15px;background:#e4f5fa}.videoitem h3{font-size:24px}.missing,.small{font-size:13px;color:#917b61}.taskrow{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap}.likechosen{font-size:25px;text-align:center;min-height:40px}.footer{text-align:center;margin:24px auto;color:#668391;font-size:13px}@media(max-width:760px){.mast{height:160px}.main-tab{min-height:80px}.main-tab .symbol{display:block;margin:0}.tile{flex-basis:118px;min-height:110px}.tile .em{font-size:37px}.tiletext{font-size:14px}.panel{padding:12px;border-radius:23px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.animal img{height:160px}.videogrid{grid-template-columns:1fr}.wrap{padding:0 9px 35px}}@media(min-width:761px) and (max-width:1050px){.cards{grid-template-columns:repeat(3,1fr)}}
+
+.return-home{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin:14px 0 12px;padding:11px 19px;border-radius:999px;background:#fff9e8;border:2px solid #e5b768;color:#74451e;font-size:16px;font-weight:800;text-decoration:none;box-shadow:0 3px 9px #00000012}.return-home:hover,.return-home:focus-visible{background:#ffe7a6;outline-offset:3px}
+</style></head><body><main class="wrap"><a class="return-home" href="../index.html" aria-label="返回中文启蒙小课堂总页面">🏠 返回中文启蒙小课堂</a><header class="mast"><h1>🐷 农场动物（二） 🐰</h1></header><nav class="main-tabs" aria-label="学习类别"><button class="main-tab selected" data-section="study"><span class="symbol">📖</span>课后复习</button><button class="main-tab" data-section="homework"><span class="symbol">✏️</span>课后作业</button></nav><nav class="subtabs" id="tileMenu" aria-label="学习项目"></nav><section class="panel" id="activity"><div class="panel-head"><h2 id="activityTitle">认识五种小动物</h2><button class="back" id="readInstruction">🔊 听说明</button></div><p id="activityDesc" class="hint"></p><div id="activityBody"></div></section><footer class="footer">图片 · 中文朗读 · 动物叫声 · 视频，全部独立存放在 assets 文件夹</footer></main>
+<script src="audio/tts-manifest.js"></script>
+<script>
+'use strict';
+const A=[{id:'pig',name:'小猪',n:3,call:'哼哼'},{id:'cow',name:'小牛',n:2,call:'哞哞'},{id:'sheep',name:'小羊',n:4,call:'咩咩'},{id:'horse',name:'小马',n:1,call:'嘶嘶'},{id:'rabbit',name:'小兔子',n:2,call:''}];
+const IMG='assets/images/',CALL='assets/audio/animal-sounds/';const $=s=>document.querySelector(s);let section='study',active='',audio=null,quiz=null,score=0;const rand=a=>a[Math.floor(Math.random()*a.length)];const shuffled=a=>[...a].sort(()=>Math.random()-.5);const safe=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function speakChinese(text){farmSpeak(text)} function say(t){speakChinese(t)}
+function play(path,text){if(audio){audio.pause();audio=null}if(!path){if(text)say(text);return}let a=new Audio(path);audio=a;a.play().catch(()=>{if(text)say(text)})}
+function speech(cat,file,text){if(audio){audio.pause();audio=null}if(text)say(text)}
+function view(name){ /* all activities remain on the same page */ }
+const STUDY=[['认识五种小动物','🐷','看图、听名称、练习“这是……”','learn'],['听叫声猜动物','🔊','听一听，是谁在叫？','sounds'],['小动物在做什么？','🎬','看视频：小马在跑，小兔子在跳','moves'],['农场数一数','🔢','看大图，自己选择数字','count'],['我喜欢……','💗','选择喜欢的小动物，说完整句子','like']];
+const HOMEWORK=[['第一天｜认识新朋友','🌟','听名称随机找动物、纠正机器人','day1'],['第二天｜农场找一找','🌳','在大场景找动物、观察特征、复习跑和跳','day2'],['第三天｜农场大聚会','🎈','看大图数动物、说“我喜欢……”','day3']];
+const INFO={learn:['认识五种小动物','点击动物图片听名称，试着说“这是……”'],sounds:['听叫声猜动物','先听声音，再点击对应的小动物；下一题会换动物'],moves:['小动物在做什么？','观看自己放入的视频，学习“小马在跑”“小兔子在跳”'],count:['农场数一数','看一张完整的农场大图，听题目，点击数字作答'],like:['我喜欢……','选择喜欢的小动物，练习说完整句子'],day1:['第一天｜认识新朋友','随机听名称找动物；机器人有时会认错'],day2:['第二天｜农场找一找','在农场大图中找动物、观察身体部位、复习动作'],day3:['第三天｜农场大聚会','看完整农场图数一数，再说说你喜欢谁']};
+function menu(which){section=which;document.querySelectorAll('[data-section]').forEach(b=>{b.classList.toggle('selected',b.dataset.section===which);b.setAttribute('aria-selected',b.dataset.section===which?'true':'false')});
+ const items=which==='study'?STUDY:HOMEWORK;
+ $('#tileMenu').innerHTML=items.map(([name,em,desc,id],i)=>`<button class="tile ${i===0?'selected':''}" data-open="${id}" title="${name}" aria-label="${name}"><span class="em">${em}</span><span class="tiletext">${which==='homework'?name.split('｜')[0]:name}</span></button>`).join('');
+ openActivity(items[0][3]);}
+function openActivity(id){active=id;score=0;document.querySelectorAll('[data-open]').forEach(b=>{b.classList.toggle('selected',b.dataset.open===id);b.setAttribute('aria-pressed',b.dataset.open===id?'true':'false')});
+ $('#activityTitle').textContent=INFO[id][0];$('#activityDesc').textContent=INFO[id][1];const b=$('#activityBody');b.innerHTML='';({learn,moves,sounds,count,like,day1,day2,day3})[id](b)}
+function card(a,cls='animal'){return `<button class="${cls}" data-id="${a.id}"><img src="${IMG+a.id}.jpg" alt="${a.name}"><strong>${a.name}</strong></button>`}
+function cards(b,items,fn){b.querySelectorAll('[data-id]').forEach(x=>x.addEventListener('click',()=>fn(A.find(a=>a.id===x.dataset.id),x)))}
+function btn(t,fn,cls='action'){const x=document.createElement('button');x.className=cls;x.textContent=t;x.onclick=fn;return x}
+function learn(b){b.innerHTML=`<p class="question">点击小动物，听一听，说一说</p><div class="cards">${A.map(a=>card(a)).join('')}</div><div class="feedback" id="fb">请选择一只小动物</div>`;cards(b,A,a=>{speech('animals',a.id,a.name);$('#fb').textContent='这是'+a.name+'。';});b.append(btn('🔊 听完整句子',()=>{let a=A.find(x=>$('#fb').textContent.includes(x.name))||A[0];speech('sentences',a.id+'-sentence','这是'+a.name)}))}
+function sounds(b){
+ const list=A.filter(a=>a.id!=='rabbit');let target=null,done=false,bag=[];
+ const next=()=>{
+  if(audio){audio.pause();audio=null}
+  if('speechSynthesis' in window)speechSynthesis.cancel();
+  if(!bag.length)bag=shuffled(list);
+  target=bag.pop();done=false;
+  b.innerHTML=`<div class="question">听一听，是谁在叫呀？</div>
+   <div class="actions"><button class="action" id="hear">🔊 播放动物叫声</button><button class="action secondary" id="nextSound">➡️ 下一题</button></div>
+   <div class="cards">${shuffled(list).map(a=>card(a)).join('')}</div>
+   <div class="feedback" id="fb" role="status" aria-live="polite">点击喇叭听声音，再选择动物</div>
+   <p class="small">真实叫声文件放在 assets/audio/animal-sounds/ 文件夹中。</p>`;
+  const hear=()=>{
+   if('speechSynthesis' in window)speechSynthesis.cancel();
+   if(audio){audio.pause();audio.currentTime=0}
+   let a=new Audio(CALL+target.id+'.mp3');audio=a;
+   a.play().catch(()=>{$('#fb').textContent='还没有放入 '+target.id+'.mp3，请先添加真实叫声。'});
+  };
+  $('#hear').onclick=hear;
+  $('#nextSound').onclick=next;
+  cards(b,list,(a,x)=>{
+   if(done)return;
+   if(audio){audio.pause();audio=null}
+   if(a.id===target.id){
+    done=true;x.classList.add('good');
+    const message='答对了！这是'+target.name+'！';
+    $('#fb').textContent=message;
+    say(message);
+   }else{
+    x.classList.add('bad');
+    const message='再听一听，猜猜是谁呀！';
+    $('#fb').textContent=message;
+    say(message);
+   }
+  });
+ };
+ next();
+}
+function moves(b){b.innerHTML=`<div class="videogrid"><article class="videoitem"><h3>🐴 小马在跑</h3><video controls playsinline preload="metadata" src="assets/video/horse-running.mp4"></video><div class="actions"><button class="action" data-sentence="horse">🔊 小马在跑</button></div><p class="missing">视频文件：horse-running.mp4</p></article><article class="videoitem"><h3>🐰 小兔子在跳</h3><video controls playsinline preload="metadata" src="assets/video/rabbit-jumping.mp4"></video><div class="actions"><button class="action" data-sentence="rabbit">🔊 小兔子在跳</button></div><p class="missing">视频文件：rabbit-jumping.mp4</p></article></div><p class="hint">请将视频放入 assets/video/ 文件夹。这里不放静态动作图片。</p>`;b.querySelectorAll('[data-sentence]').forEach(x=>x.onclick=()=>{let h=x.dataset.sentence==='horse';speech('sentences',h?'run':'jump',h?'小马在跑':'小兔子在跳')})}
+function counting(b,options={}){let prev=null,done=false;const next=()=>{const target=rand(A.filter(a=>!prev||a.id!==prev.id));prev=target;done=false;b.innerHTML=`<img class="bigscene" src="${IMG}farm-count.jpg" alt="农场里有三只小猪、两只小牛、四只小羊、一匹小马和两只小兔子"><div class="taskrow"><div class="question" id="question">有几${target.id==='horse'?'匹':'只'}${target.name}？</div><button class="back" id="hearQuestion">🔊 听题目</button></div><div class="numbers">${[1,2,3,4,5].map(n=>`<button class="number" data-num="${n}">${n}</button>`).join('')}</div><div class="feedback" id="fb">请点击一个数字</div><div class="actions"><button class="action" id="next">下一题 →</button></div>`;$('#hearQuestion').onclick=()=>speech('questions','count-'+target.id,$('#question').textContent);$('#next').onclick=next;b.querySelectorAll('[data-num]').forEach(x=>x.onclick=()=>{if(done)return;let n=Number(x.dataset.num);if(n===target.n){done=true;$('#fb').textContent='答对了！'+target.n+(target.id==='horse'?'匹':'只')+target.name+'！';speech('feedback','right','答对了')}else{$('#fb').textContent='再数一数，试试看！';speech('feedback','try-again','再试一次')}})};next()}
+function count(b){counting(b)}
+function like(b){b.innerHTML=`<p class="question">你喜欢哪个小动物？</p><div class="cards">${A.map(a=>card(a)).join('')}</div><div class="likechosen" id="liked">点击喜欢的小动物</div><div class="actions"><button class="action secondary" id="listenLike">🔊 听“我喜欢……”</button></div>`;let current=null;cards(b,A,a=>{current=a;$('#liked').textContent='我喜欢'+a.name+'。';speech('sentences','like-'+a.id,'我喜欢'+a.name)});$('#listenLike').onclick=()=>{if(current)speech('sentences','like-'+current.id,'我喜欢'+current.name);else speech('questions','favorite','你最喜欢哪个小动物？')}}
+function day1(b){let target=null,mode=0,done=false;const next=()=>{target=rand(A.filter(a=>!target||a.id!==target.id));done=false;mode=Math.random()<.42?2:1;let guess=Math.random()<.5?target:rand(A.filter(a=>a.id!==target.id));b.innerHTML=`<div class="question">${mode===2?'机器人说：“这是'+guess.name+'。”对吗？':'听一听，找到正确的小动物'}</div><div class="actions"><button class="action" id="read">🔊 听题目</button></div>${mode===2?`<div class="cards" style="max-width:230px;margin:auto">${card(target)}</div><div class="numbers"><button class="number" data-yes="yes">对</button><button class="number" data-yes="no">不对</button></div>`:`<div class="cards">${shuffled(A).map(a=>card(a)).join('')}</div>`}<div class="feedback" id="fb"></div><div class="actions"><button class="action secondary" id="next">下一题 →</button></div>`;$('#read').onclick=()=>mode===2?say('这是'+guess.name+'，对吗？'):speech('questions','find-'+target.id,'请找到'+target.name);$('#next').onclick=next;if(mode===2){b.querySelectorAll('[data-yes]').forEach(x=>x.onclick=()=>{if(done)return;let ok=(x.dataset.yes==='yes')===(guess.id===target.id);$('#fb').textContent=ok?'答对了！这是'+target.name:'再想一想！';if(ok){done=true;speech('feedback','right','答对了')}})}else cards(b,A,(a,x)=>{if(done)return;if(a.id===target.id){done=true;x.classList.add('good');$('#fb').textContent='找到了！这是'+a.name;speech('animals',a.id,a.name)}else{x.classList.add('bad');$('#fb').textContent='再找一找！'}})};next()}
+function day2(b){let task=0,animal=null;
+ const draw=()=>{animal=rand(A.filter(a=>!animal||a.id!==animal.id));let q=task===0?'请找到'+animal.name:task===1?'谁的耳朵长长的？':'小猪的鼻子在哪里？';
+ b.innerHTML=`<div class="question" id="q">${q}</div><div class="actions"><button class="action" id="hear">🔊 听题目</button><button class="action secondary" id="switch">下一题 →</button></div><img class="bigscene" src="${IMG}farm-find.jpg" alt="在农场里找小动物"><p class="hint">请看图，用手指出答案，再点击下一题。</p>`;
+ $('#hear').onclick=()=>{if(task===0)speech('questions','find-'+animal.id,q);else if(task===1)speech('questions','where-ears',q);else speech('questions','where-nose',q)};
+ $('#switch').onclick=()=>{task=(task+1)%3;draw()};};draw()}
+function day3(b){b.innerHTML='<p class="hint">第一项：数一数本次课的五种动物。</p><div id="countHere"></div><hr style="border:0;border-top:1px solid #e5e9df;margin:25px 0"><h3>第二项：我喜欢……</h3><div id="likeHere"></div>';counting($('#countHere'));like($('#likeHere'))}
+document.addEventListener('click',e=>{let s=e.target.closest('[data-section]');if(s)menu(s.dataset.section);let o=e.target.closest('[data-open]');if(o)openActivity(o.dataset.open)});menu('study');
+
+ document.querySelector('#readInstruction').addEventListener('click',()=>say(document.querySelector('#activityDesc').textContent));
+// ===== 朗读：优先播放预生成的 Edge TTS 音频，找不到则回退浏览器语音 =====
+function fallbackSpeak(text){
+  if(!('speechSynthesis' in window))return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='zh-CN';u.rate=0.83;
+  window.speechSynthesis.speak(u);
+}
+function farmSpeak(text){
+  if(!text)return;
+  const map=window.TTS_AUDIO||{};
+  const src=map[text];
+  if(src){
+    if(audio){audio.pause();audio=null}
+    const a=new Audio(src);
+    audio=a;
+    a.play().catch(()=>fallbackSpeak(text));
+  }else{
+    fallbackSpeak(text);
+  }
+}
+</script></body></html>
