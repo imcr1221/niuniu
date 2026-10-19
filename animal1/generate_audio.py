@@ -2,9 +2,11 @@ import asyncio, hashlib, json, os
 import edge_tts
 
 VOICE = "zh-CN-XiaoyiNeural"   # 活泼女声
-RATE  = "-5%"
-PITCH = "+8Hz"
+RATE  = "-17%"
+PITCH = "+6Hz"
 OUT   = "audio"
+TEXTS = "tts-texts.json"
+
 
 os.makedirs(OUT, exist_ok=True)
 
@@ -15,7 +17,8 @@ manifest = {}
 
 async def main():
     for text in texts:
-        name = hashlib.md5(text.encode("utf-8")).hexdigest()[:12] + ".mp3"
+        key = text + VOICE + RATE + PITCH
+        name = hashlib.md5(key.encode("utf-8")).hexdigest()[:12] + ".mp3"
         path = os.path.join(OUT, name)
         manifest[text] = f"{OUT}/{name}"
         if os.path.exists(path):
