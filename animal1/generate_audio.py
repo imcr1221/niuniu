@@ -2,7 +2,7 @@ import asyncio, hashlib, json, os
 import edge_tts
 
 VOICE = "zh-CN-XiaoyiNeural"   # 活泼女声
-RATE  = "-17%"
+RATE  = "-25%"
 PITCH = "+6Hz"
 OUT   = "audio"
 TEXTS = "tts-texts.json"
