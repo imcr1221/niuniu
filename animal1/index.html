@@ -9,29 +9,49 @@
 <section class="panel hidden" id="like"><div class="hero"><div class="robot">🤖</div><div class="bubble">我们一起练习说完整的中文句子！</div></div><div class="center"><img id="likeImg" alt="动物图片" style="height:290px;max-width:80%;object-fit:contain"><div class="prompt-row"><div class="prompt" id="likePrompt"></div><button class="question-audio" id="likeQuestionAudio" type="button">🔊 听题目</button></div><div class="answer"><button class="btn primary" id="yes"><span class="heart-symbol" aria-hidden="true">❤️</span><span>我喜欢……</span></button><button class="btn" id="no"><span class="heart-symbol" aria-hidden="true">💔</span><span>我不喜欢……</span></button></div><div class="feedback" id="likeFeedback" aria-live="polite"></div><button class="btn" id="likeNext">下一只动物 ➜</button></div></section>
 <footer>给中文启蒙小朋友的练习</footer></main><script>
 const animals=[{id:'dog',name:'小狗',call:'汪汪汪'},{id:'cat',name:'小猫',call:'喵喵喵'},{id:'chick',name:'小鸡',call:'叽叽叽'},{id:'duck',name:'小鸭',call:'嘎嘎嘎'},{id:'mouse',name:'小老鼠',call:'吱吱吱'}];
-const audioBase='assets/audio/';const imageBase='assets/images/';let listenTarget,findTarget,likeIndex=0,listenPoints=0,findPoints=0,listenDone=false,findDone=false;const $=id=>document.getElementById(id);function shuffle(a){return [...a].sort(()=>Math.random()-.5)}function preferredChineseVoice(){
-  const voices=window.speechSynthesis.getVoices();
-  const chinese=voices.filter(v=>/^zh(?:[-_]|$)/i.test(v.lang));
-  return chinese.find(v=>/xiaoxiao/i.test(v.name))
-      || chinese.find(v=>/zh[-_]CN/i.test(v.lang)&&/Microsoft/i.test(v.name))
-      || chinese.find(v=>/zh[-_]CN/i.test(v.lang))
-      || chinese[0] || null;
-}
-function speakChinese(text){
-  if(!('speechSynthesis' in window))return;
-  window.speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(text);
-  u.lang='zh-CN';
-  u.rate=0.83;
-  u.pitch=1;
-  const voice=preferredChineseVoice();
-  if(voice)u.voice=voice;
-  window.speechSynthesis.speak(u);
-}
-function speak(s){speakChinese(s)}
+const audioBase='assets/audio/';const imageBase='assets/images/';let listenTarget,findTarget,likeIndex=0,listenPoints=0,findPoints=0,listenDone=false,findDone=false;const $=id=>document.getElementById(id);function shuffle(a){return [...a].sort(()=>Math.random()-.5)}function speakChinese(text){farmSpeak(text)} function speak(s){speakChinese(s)}
 function renderCards(container,fn){container.innerHTML='';shuffle(animals).forEach(a=>{let b=document.createElement('button');b.className='animal';b.innerHTML=`<img src="${imageBase}${a.id}.png" alt="${a.name}"><span>${a.name}</span>`;b.onclick=()=>fn(a,b);container.appendChild(b)})}function resetCardClasses(id){$(id).querySelectorAll('.animal').forEach(b=>b.classList.remove('correct','wrong'))}
 function chooseListen(){listenTarget=animals[Math.floor(Math.random()*animals.length)];listenDone=false;$('listenFeedback').textContent='';$('listenSpeech').textContent='小朋友，听一听！是谁在叫呀？';renderCards($('listenAnimals'),(a,b)=>{if(listenDone)return;if(a.id===listenTarget.id){listenDone=true;listenPoints++;b.classList.add('correct');$('listenFeedback').textContent='🎉 太棒啦！这是'+a.name+'！';$('listenSpeech').textContent='小朋友真棒！你帮我找到了'+a.name+'！';$('listenScore').textContent='答对 '+listenPoints+' 题';speak('太棒啦！这是'+a.name)}else{b.classList.add('wrong');$('listenFeedback').textContent='再听一次，想一想！';speak('再试一次')}})}
 function playCall(){let audio=new Audio(audioBase+listenTarget.id+'.mp3');audio.play().catch(()=>speak(listenTarget.call))}function chooseFind(){findTarget=animals[Math.floor(Math.random()*animals.length)];findDone=false;$('findFeedback').textContent='';$('findPrompt').textContent='请找到：'+findTarget.name;renderCards($('findAnimals'),(a,b)=>{if(findDone)return;if(a.id===findTarget.id){findDone=true;findPoints++;b.classList.add('correct');$('findFeedback').textContent='⭐ 找到了！这是'+a.name+'！';$('findScore').textContent='答对 '+findPoints+' 题';speak('真棒！这是'+a.name)}else{b.classList.add('wrong');$('findFeedback').textContent='还不是它，再找一找！';speak('再找一找')}});speak('请找到'+findTarget.name)}
 function showLike(){let a=animals[likeIndex%animals.length];$('likeImg').src=imageBase+a.id+'.png';$('likeImg').alt=a.name;$('likePrompt').textContent='你喜欢'+a.name+'吗？';$('likeFeedback').textContent='';speak('你喜欢'+a.name+'吗？')}function answerLike(yes){let a=animals[likeIndex%animals.length];let t='我'+(yes?'':'不')+'喜欢'+a.name;$('likeFeedback').textContent='👏 '+t+'。';speak(t)}
 $('listenQuestionAudio').onclick=()=>speak('小朋友，听一听！是谁在叫呀？');$('findQuestionAudio').onclick=()=>speak('请找到'+findTarget.name);$('likeQuestionAudio').onclick=()=>speak('你喜欢'+animals[likeIndex%animals.length].name+'吗？');document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));['listen','find','like','learn'].forEach(id=>$(id).classList.toggle('hidden',id!==b.dataset.page))});$('play').onclick=playCall;$('repeat').onclick=playCall;$('listenNext').onclick=chooseListen;$('findNext').onclick=chooseFind;$('yes').onclick=()=>answerLike(true);$('no').onclick=()=>answerLike(false);$('likeNext').onclick=()=>{likeIndex++;showLike()};function renderVideoAnimals(){const box=$('videoAnimals');animals.forEach(a=>{const card=document.createElement('article');card.className='video-card';const video=document.createElement('video');video.src='assets/video/'+a.id+'.mp4';video.poster=imageBase+a.id+'.png';video.preload='metadata';video.controls=true;video.playsInline=true;video.setAttribute('aria-label',a.name+'的视频');video.addEventListener('play',()=>{box.querySelectorAll('video').forEach(other=>{if(other!==video)other.pause()})});const name=document.createElement('h3');name.textContent=a.name;const read=document.createElement('button');read.className='read-line';read.textContent=a.name+'，这是'+a.name+'。 🔊';read.setAttribute('aria-label','朗读：'+a.name+'，这是'+a.name);read.onclick=()=>speak(a.name+'，这是'+a.name+'。');card.append(video,name,read);box.appendChild(card)})}renderVideoAnimals();chooseListen();chooseFind();showLike();
+
+// 两个课程共用同一个音色选择（在同一网站域名下保存）。
+const FARM_VOICE_KEY='farmAnimalsChineseVoice_v1';
+let farmVoiceChoice='';
+try { farmVoiceChoice=localStorage.getItem(FARM_VOICE_KEY)||''; } catch(e) {}
+function farmVoices(){return (window.speechSynthesis?.getVoices()||[]).filter(v=>/^zh([_-]|$)/i.test(v.lang));}
+function farmSpeak(text){
+  if(!('speechSynthesis' in window))return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='zh-CN';u.rate=0.83;
+  const chosen=farmVoices().find(v=>v.voiceURI===farmVoiceChoice);
+  if(chosen)u.voice=chosen; // 未选择时沿用浏览器默认声音
+  window.speechSynthesis.speak(u);
+}
+function farmVoiceUI(){
+  const host=document.createElement('div');host.className='farm-voice-tools';
+  host.style.cssText='display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:9px;margin:10px auto 16px;padding:10px;border-radius:16px;background:#fff9e8;border:2px solid #e7d7ad;max-width:950px;color:#654323';
+  const label=document.createElement('label');label.textContent='🎤 中文朗读声音：';label.htmlFor='farmVoiceSelect';label.style.fontWeight='bold';
+  const select=document.createElement('select');select.id='farmVoiceSelect';select.style.cssText='max-width:100%;min-width:170px;padding:9px;border-radius:10px;border:1px solid #b9a47b;background:white;font:inherit';
+  const test=document.createElement('button');test.type='button';test.textContent='🔊 试听';test.style.cssText='padding:9px 15px;border-radius:12px;border:1px solid #d9a458;background:#ffdc80;color:#593818;font:inherit;cursor:pointer';
+  const note=document.createElement('small');note.textContent='两个课程选择同一声音；仅在同一浏览器和网站下自动同步。';note.style.cssText='width:100%;text-align:center;font-size:12px';
+  host.append(label,select,test,note);
+  const render=()=>{
+    const previous=select.value||farmVoiceChoice;
+    select.replaceChildren();
+    const defaultOpt=new Option('浏览器默认声音','');select.add(defaultOpt);
+    farmVoices().forEach(v=>select.add(new Option(v.name+' ('+v.lang+')',v.voiceURI)));
+    select.value=[...select.options].some(o=>o.value===previous)?previous:'';
+  };
+  select.onchange=()=>{farmVoiceChoice=select.value;try{localStorage.setItem(FARM_VOICE_KEY,farmVoiceChoice)}catch(e){};farmSpeak('你好，小朋友！欢迎来到快乐农场！')};
+  test.onclick=()=>farmSpeak('你好，小朋友！这是小猪，这是小牛。');
+  const anchor=document.querySelector('nav');
+  if(anchor)anchor.parentNode.insertBefore(host,anchor);else document.body.prepend(host);
+  render();
+  if('speechSynthesis' in window)window.speechSynthesis.addEventListener?.('voiceschanged',render);
+  window.addEventListener('storage',e=>{if(e.key===FARM_VOICE_KEY){farmVoiceChoice=e.newValue||'';render();}});
+}
+farmVoiceUI();
 </script></body></html>
