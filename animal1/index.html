@@ -7,7 +7,9 @@
 <section class="panel hidden" id="listen"><div class="hero"><div class="robot">🤖</div><div class="bubble" id="listenSpeech">小朋友，听一听！是谁在叫呀？</div><button class="question-audio" id="listenQuestionAudio" type="button" aria-label="朗读题目">🔊 听题目</button></div><p class="center note">有真实录音时，放进 assets/audio 文件夹即可；没有录音时，机器人会读出中文拟声词。</p><div class="controls"><button class="btn primary" id="play">🔊 播放叫声</button><button class="btn" id="repeat">🔁 再听一次</button></div><div class="animals" id="listenAnimals"></div><div class="feedback" id="listenFeedback" aria-live="polite"></div><div class="center"><span class="score" id="listenScore">答对 0 题</span>　<button class="btn" id="listenNext">下一题 ➜</button></div></section>
 <section class="panel hidden" id="find"><div class="hero"><div class="robot">🤖</div><div class="bubble">小朋友，帮我找到正确的小动物吧！</div></div><div class="prompt-row"><div class="prompt" id="findPrompt"></div><button class="question-audio" id="findQuestionAudio" type="button">🔊 听题目</button></div><div class="animals" id="findAnimals"></div><div class="feedback" id="findFeedback" aria-live="polite"></div><div class="center"><span class="score" id="findScore">答对 0 题</span>　<button class="btn" id="findNext">下一题 ➜</button></div></section>
 <section class="panel hidden" id="like"><div class="hero"><div class="robot">🤖</div><div class="bubble">我们一起练习说完整的中文句子！</div></div><div class="center"><img id="likeImg" alt="动物图片" style="height:290px;max-width:80%;object-fit:contain"><div class="prompt-row"><div class="prompt" id="likePrompt"></div><button class="question-audio" id="likeQuestionAudio" type="button">🔊 听题目</button></div><div class="answer"><button class="btn primary" id="yes"><span class="heart-symbol" aria-hidden="true">❤️</span><span>我喜欢……</span></button><button class="btn" id="no"><span class="heart-symbol" aria-hidden="true">💔</span><span>我不喜欢……</span></button></div><div class="feedback" id="likeFeedback" aria-live="polite"></div><button class="btn" id="likeNext">下一只动物 ➜</button></div></section>
-<footer>给中文启蒙小朋友的练习</footer></main><script>
+<footer>给中文启蒙小朋友的练习</footer></main>
+<script src="audio/tts-manifest.js"></script>
+<script>
 const animals=[{id:'dog',name:'小狗',call:'汪汪汪'},{id:'cat',name:'小猫',call:'喵喵喵'},{id:'chick',name:'小鸡',call:'叽叽叽'},{id:'duck',name:'小鸭',call:'嘎嘎嘎'},{id:'mouse',name:'小老鼠',call:'吱吱吱'}];
 const audioBase='assets/audio/';const imageBase='assets/images/';let listenTarget,findTarget,likeIndex=0,listenPoints=0,findPoints=0,listenDone=false,findDone=false;const $=id=>document.getElementById(id);function shuffle(a){return [...a].sort(()=>Math.random()-.5)}function speakChinese(text){farmSpeak(text)} function speak(s){speakChinese(s)}
 function renderCards(container,fn){container.innerHTML='';shuffle(animals).forEach(a=>{let b=document.createElement('button');b.className='animal';b.innerHTML=`<img src="${imageBase}${a.id}.png" alt="${a.name}"><span>${a.name}</span>`;b.onclick=()=>fn(a,b);container.appendChild(b)})}function resetCardClasses(id){$(id).querySelectorAll('.animal').forEach(b=>b.classList.remove('correct','wrong'))}
@@ -16,42 +18,26 @@ function playCall(){let audio=new Audio(audioBase+listenTarget.id+'.mp3');audio.
 function showLike(){let a=animals[likeIndex%animals.length];$('likeImg').src=imageBase+a.id+'.png';$('likeImg').alt=a.name;$('likePrompt').textContent='你喜欢'+a.name+'吗？';$('likeFeedback').textContent='';speak('你喜欢'+a.name+'吗？')}function answerLike(yes){let a=animals[likeIndex%animals.length];let t='我'+(yes?'':'不')+'喜欢'+a.name;$('likeFeedback').textContent='👏 '+t+'。';speak(t)}
 $('listenQuestionAudio').onclick=()=>speak('小朋友，听一听！是谁在叫呀？');$('findQuestionAudio').onclick=()=>speak('请找到'+findTarget.name);$('likeQuestionAudio').onclick=()=>speak('你喜欢'+animals[likeIndex%animals.length].name+'吗？');document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));['listen','find','like','learn'].forEach(id=>$(id).classList.toggle('hidden',id!==b.dataset.page))});$('play').onclick=playCall;$('repeat').onclick=playCall;$('listenNext').onclick=chooseListen;$('findNext').onclick=chooseFind;$('yes').onclick=()=>answerLike(true);$('no').onclick=()=>answerLike(false);$('likeNext').onclick=()=>{likeIndex++;showLike()};function renderVideoAnimals(){const box=$('videoAnimals');animals.forEach(a=>{const card=document.createElement('article');card.className='video-card';const video=document.createElement('video');video.src='assets/video/'+a.id+'.mp4';video.poster=imageBase+a.id+'.png';video.preload='metadata';video.controls=true;video.playsInline=true;video.setAttribute('aria-label',a.name+'的视频');video.addEventListener('play',()=>{box.querySelectorAll('video').forEach(other=>{if(other!==video)other.pause()})});const name=document.createElement('h3');name.textContent=a.name;const read=document.createElement('button');read.className='read-line';read.textContent=a.name+'，这是'+a.name+'。 🔊';read.setAttribute('aria-label','朗读：'+a.name+'，这是'+a.name);read.onclick=()=>speak(a.name+'，这是'+a.name+'。');card.append(video,name,read);box.appendChild(card)})}renderVideoAnimals();chooseListen();chooseFind();showLike();
 
-// 两个课程共用同一个音色选择（在同一网站域名下保存）。
-const FARM_VOICE_KEY='farmAnimalsChineseVoice_v1';
-let farmVoiceChoice='';
-try { farmVoiceChoice=localStorage.getItem(FARM_VOICE_KEY)||''; } catch(e) {}
-function farmVoices(){return (window.speechSynthesis?.getVoices()||[]).filter(v=>/^zh([_-]|$)/i.test(v.lang));}
-function farmSpeak(text){
+// ===== 朗读：优先播放预生成的 Edge TTS 音频，找不到则回退浏览器语音 =====
+function fallbackSpeak(text){
   if(!('speechSynthesis' in window))return;
   window.speechSynthesis.cancel();
   const u=new SpeechSynthesisUtterance(text);
   u.lang='zh-CN';u.rate=0.83;
-  const chosen=farmVoices().find(v=>v.voiceURI===farmVoiceChoice);
-  if(chosen)u.voice=chosen; // 未选择时沿用浏览器默认声音
   window.speechSynthesis.speak(u);
 }
-function farmVoiceUI(){
-  const host=document.createElement('div');host.className='farm-voice-tools';
-  host.style.cssText='display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:9px;margin:10px auto 16px;padding:10px;border-radius:16px;background:#fff9e8;border:2px solid #e7d7ad;max-width:950px;color:#654323';
-  const label=document.createElement('label');label.textContent='🎤 中文朗读声音：';label.htmlFor='farmVoiceSelect';label.style.fontWeight='bold';
-  const select=document.createElement('select');select.id='farmVoiceSelect';select.style.cssText='max-width:100%;min-width:170px;padding:9px;border-radius:10px;border:1px solid #b9a47b;background:white;font:inherit';
-  const test=document.createElement('button');test.type='button';test.textContent='🔊 试听';test.style.cssText='padding:9px 15px;border-radius:12px;border:1px solid #d9a458;background:#ffdc80;color:#593818;font:inherit;cursor:pointer';
-  const note=document.createElement('small');note.textContent='两个课程选择同一声音；仅在同一浏览器和网站下自动同步。';note.style.cssText='width:100%;text-align:center;font-size:12px';
-  host.append(label,select,test,note);
-  const render=()=>{
-    const previous=select.value||farmVoiceChoice;
-    select.replaceChildren();
-    const defaultOpt=new Option('浏览器默认声音','');select.add(defaultOpt);
-    farmVoices().forEach(v=>select.add(new Option(v.name+' ('+v.lang+')',v.voiceURI)));
-    select.value=[...select.options].some(o=>o.value===previous)?previous:'';
-  };
-  select.onchange=()=>{farmVoiceChoice=select.value;try{localStorage.setItem(FARM_VOICE_KEY,farmVoiceChoice)}catch(e){};farmSpeak('你好，小朋友！欢迎来到快乐农场！')};
-  test.onclick=()=>farmSpeak('你好，小朋友！这是小猪，这是小牛。');
-  const anchor=document.querySelector('nav');
-  if(anchor)anchor.parentNode.insertBefore(host,anchor);else document.body.prepend(host);
-  render();
-  if('speechSynthesis' in window)window.speechSynthesis.addEventListener?.('voiceschanged',render);
-  window.addEventListener('storage',e=>{if(e.key===FARM_VOICE_KEY){farmVoiceChoice=e.newValue||'';render();}});
+function farmSpeak(text){
+  if(!text)return;
+  const map=window.TTS_AUDIO||{};
+  const src=map[text];
+  if(src){
+    if(window.__ttsAudio){window.__ttsAudio.pause();window.__ttsAudio=null}
+    const a=new Audio(src);
+    window.__ttsAudio=a;
+    a.play().catch(()=>fallbackSpeak(text));
+  }else{
+    console.warn('[TTS] 没有预生成音频，回退浏览器语音：', JSON.stringify(text));
+    fallbackSpeak(text);
+  }
 }
-farmVoiceUI();
 </script></body></html>
