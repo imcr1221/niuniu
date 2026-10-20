@@ -30,7 +30,7 @@ function speech(cat,file,text){if(audio){audio.pause();audio=null}if(text)say(te
 function view(name){ /* all activities remain on the same page */ }
 const STUDY=[['认识五种小动物','🐷','看图、听名称、练习“这是……”','learn'],['听叫声猜动物','🔊','听一听，是谁在叫？','sounds'],['小动物在做什么？','🎬','看视频：小马在跑，小兔子在跳','moves'],['农场数一数','🔢','看大图，自己选择数字','count'],['我喜欢……','💗','选择喜欢的小动物，说完整句子','like']];
 const HOMEWORK=[['第一天｜认识新朋友','🌟','听名称随机找动物、纠正机器人','day1'],['第二天｜农场找一找','🌳','在大场景找动物、观察特征、复习跑和跳','day2'],['第三天｜农场大聚会','🎈','看大图数动物、说“我喜欢……”','day3']];
-const INFO={learn:['认识五种小动物','点击动物图片听名称，试着说“这是……”'],sounds:['听叫声猜动物','先听声音，再点击对应的小动物；下一题会换动物'],moves:['小动物在做什么？','观看自己放入的视频，学习“小马在跑”“小兔子在跳”'],count:['农场数一数','看一张完整的农场大图，听题目，点击数字作答'],like:['我喜欢……','选择喜欢的小动物，练习说完整句子'],day1:['第一天｜认识新朋友','随机听名称找动物；机器人有时会认错'],day2:['第二天｜农场找一找','在农场大图中找动物、观察身体部位、复习动作'],day3:['第三天｜农场大聚会','看完整农场图数一数，再说说你喜欢谁']};
+const INFO={learn:['认识五种小动物','点击动物图片听名称，试着说“这是……”'],sounds:['听叫声猜动物','先听声音，再点击对应的小动物；下一题会换动物'],moves:['小动物在做什么？','观看自己放入的视频，学习“小马在跑”“小兔子在跳”'],count:['农场数一数','看一张完整的农场大图，听题目，点击数字作答'],like:['我喜欢……','选择喜欢的小动物，练习说完整句子'],day1:['第一天｜认识新朋友','随机听名称找动物；机器人有时会认错'],day2:['第二天｜农场找一找','在农场大图中找动物、用手指指一指小动物在哪里'],day3:['第三天｜农场大聚会','看完整农场图数一数，再说说你喜欢谁']};
 function menu(which){section=which;document.querySelectorAll('[data-section]').forEach(b=>{b.classList.toggle('selected',b.dataset.section===which);b.setAttribute('aria-selected',b.dataset.section===which?'true':'false')});
  const items=which==='study'?STUDY:HOMEWORK;
  $('#tileMenu').innerHTML=items.map(([name,em,desc,id],i)=>`<button class="tile ${i===0?'selected':''}" data-open="${id}" title="${name}" aria-label="${name}"><span class="em">${em}</span><span class="tiletext">${which==='homework'?name.split('｜')[0]:name}</span></button>`).join('');
@@ -140,7 +140,7 @@ function farmSpeak(text){
   <div data-tts-text="看一张完整的农场大图，听题目，点击数字作答">看一张完整的农场大图，听题目，点击数字作答</div>
   <div data-tts-text="选择喜欢的小动物，练习说完整句子">选择喜欢的小动物，练习说完整句子</div>
   <div data-tts-text="随机听名称找动物；机器人有时会认错">随机听名称找动物；机器人有时会认错</div>
-  <div data-tts-text="在农场大图中找动物、观察身体部位、复习动作">在农场大图中找动物、观察身体部位、复习动作</div>
+  <div data-tts-text="在农场大图中找动物、用手指指一指小动物在哪里">在农场大图中找动物、用手指指一指小动物在哪里</div>
   <div data-tts-text="看完整农场图数一数，再说说你喜欢谁">看完整农场图数一数，再说说你喜欢谁</div>
   <div data-tts-text="再听一听，猜猜是谁呀！">再听一听，猜猜是谁呀！</div>
   <div data-tts-text="不对哦！再试一次吧！">不对哦！再试一次吧！</div>
