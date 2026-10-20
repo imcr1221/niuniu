@@ -4,7 +4,7 @@
 .return-home{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin:14px 0 12px;padding:11px 19px;border-radius:999px;background:#fff9e8;border:2px solid #e5b768;color:#74451e;font-size:16px;font-weight:800;text-decoration:none;box-shadow:0 3px 9px #00000012}.return-home:hover,.return-home:focus-visible{background:#ffe7a6;outline-offset:3px}
 </style></head><body><main class="wrap"><a class="return-home" href="../index.html" aria-label="返回中文启蒙小课堂总页面">🏠 返回中文启蒙小课堂</a><header><div style="font-size:34px">🌻 🏡 🌳</div><h1>机器人的农场动物小游戏</h1><div class="sub">听一听 · 找一找 · 说一说</div></header><nav><button class="tab active" data-page="learn">🎬 认识小动物</button><button class="tab" data-page="listen">🔊 听声音猜动物</button><button class="tab" data-page="find">🔍 帮机器人找动物</button><button class="tab" data-page="like">💗 你喜欢它吗？</button></nav>
 <section class="panel" id="learn"><div class="hero"><div class="robot">🤖</div><div class="bubble">我们一起看视频，认识农场里的小动物吧！</div></div><p class="video-help">点击视频播放动物的动作和叫声；点击下方的中文句子，可以听老师朗读。</p><div class="video-grid" id="videoAnimals"></div></section>
-<section class="panel hidden" id="listen"><div class="hero"><div class="robot">🤖</div><div class="bubble" id="listenSpeech">小朋友，听一听！是谁在叫呀？</div><button class="question-audio" id="listenQuestionAudio" type="button" aria-label="朗读题目">🔊 听题目</button></div><p class="center note">有真实录音时，放进 assets/audio 文件夹即可；没有录音时，机器人会读出中文拟声词。</p><div class="controls"><button class="btn primary" id="play">🔊 播放叫声</button><button class="btn" id="repeat">🔁 再听一次</button></div><div class="animals" id="listenAnimals"></div><div class="feedback" id="listenFeedback" aria-live="polite"></div><div class="center"><span class="score" id="listenScore">答对 0 题</span>　<button class="btn" id="listenNext">下一题 ➜</button></div></section>
+<section class="panel hidden" id="listen"><div class="hero"><div class="robot">🤖</div><div class="bubble" id="listenSpeech" data-tts-text="小朋友，听一听！是谁在叫呀？">小朋友，听一听！是谁在叫呀？</div><button class="question-audio" id="listenQuestionAudio" type="button" aria-label="朗读题目">🔊 听题目</button></div><p class="center note">有真实录音时，放进 assets/audio 文件夹即可；没有录音时，机器人会读出中文拟声词。</p><div class="controls"><button class="btn primary" id="play">🔊 播放叫声</button><button class="btn" id="repeat">🔁 再听一次</button></div><div class="animals" id="listenAnimals"></div><div class="feedback" id="listenFeedback" aria-live="polite"></div><div class="center"><span class="score" id="listenScore">答对 0 题</span>　<button class="btn" id="listenNext">下一题 ➜</button></div></section>
 <section class="panel hidden" id="find"><div class="hero"><div class="robot">🤖</div><div class="bubble">小朋友，帮我找到正确的小动物吧！</div></div><div class="prompt-row"><div class="prompt" id="findPrompt"></div><button class="question-audio" id="findQuestionAudio" type="button">🔊 听题目</button></div><div class="animals" id="findAnimals"></div><div class="feedback" id="findFeedback" aria-live="polite"></div><div class="center"><span class="score" id="findScore">答对 0 题</span>　<button class="btn" id="findNext">下一题 ➜</button></div></section>
 <section class="panel hidden" id="like"><div class="hero"><div class="robot">🤖</div><div class="bubble">我们一起练习说完整的中文句子！</div></div><div class="center"><img id="likeImg" alt="动物图片" style="height:290px;max-width:80%;object-fit:contain"><div class="prompt-row"><div class="prompt" id="likePrompt"></div><button class="question-audio" id="likeQuestionAudio" type="button">🔊 听题目</button></div><div class="answer"><button class="btn primary" id="yes"><span class="heart-symbol" aria-hidden="true">❤️</span><span>我喜欢……</span></button><button class="btn" id="no"><span class="heart-symbol" aria-hidden="true">💔</span><span>我不喜欢……</span></button></div><div class="feedback" id="likeFeedback" aria-live="polite"></div><button class="btn" id="likeNext">下一只动物 ➜</button></div></section>
 <footer>给中文启蒙小朋友的练习</footer></main>
@@ -40,4 +40,52 @@ function farmSpeak(text){
     fallbackSpeak(text);
   }
 }
-</script></body></html>
+</script>
+<!-- TTS 预生成文本清单：动态生成的完整朗读句子，供静态工作流直接读取 -->
+<script type="application/json" id="tts-texts">
+[
+  "再试一次",
+  "再找一找",
+  "汪汪汪",
+  "喵喵喵",
+  "叽叽叽",
+  "嘎嘎嘎",
+  "吱吱吱",
+  "太棒啦！这是小狗",
+  "真棒！这是小狗",
+  "请找到小狗",
+  "你喜欢小狗吗？",
+  "我喜欢小狗",
+  "我不喜欢小狗",
+  "小狗，这是小狗。",
+  "太棒啦！这是小猫",
+  "真棒！这是小猫",
+  "请找到小猫",
+  "你喜欢小猫吗？",
+  "我喜欢小猫",
+  "我不喜欢小猫",
+  "小猫，这是小猫。",
+  "太棒啦！这是小鸡",
+  "真棒！这是小鸡",
+  "请找到小鸡",
+  "你喜欢小鸡吗？",
+  "我喜欢小鸡",
+  "我不喜欢小鸡",
+  "小鸡，这是小鸡。",
+  "太棒啦！这是小鸭",
+  "真棒！这是小鸭",
+  "请找到小鸭",
+  "你喜欢小鸭吗？",
+  "我喜欢小鸭",
+  "我不喜欢小鸭",
+  "小鸭，这是小鸭。",
+  "太棒啦！这是小老鼠",
+  "真棒！这是小老鼠",
+  "请找到小老鼠",
+  "你喜欢小老鼠吗？",
+  "我喜欢小老鼠",
+  "我不喜欢小老鼠",
+  "小老鼠，这是小老鼠。"
+]
+</script>
+</body></html>
