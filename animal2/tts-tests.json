@@ -1,1 +1,67 @@
-[]
+[
+  {
+    "id": "animal2-1",
+    "text": "点击动物图片听名称，试着说“这是……”",
+    "audio": "audio/3d241917e57f.mp3"
+  },
+  {
+    "id": "animal2-2",
+    "text": "先听声音，再点击对应的小动物；下一题会换动物",
+    "audio": "audio/58976e51f883.mp3"
+  },
+  {
+    "id": "animal2-3",
+    "text": "观看自己放入的视频，学习“小马在跑”“小兔子在跳”",
+    "audio": "audio/b77983099bc4.mp3"
+  },
+  {
+    "id": "animal2-4",
+    "text": "看一张完整的农场大图，听题目，点击数字作答",
+    "audio": "audio/fe56e7d3a7be.mp3"
+  },
+  {
+    "id": "animal2-5",
+    "text": "选择喜欢的小动物，练习说完整句子",
+    "audio": "audio/cc7ee3a726dd.mp3"
+  },
+  {
+    "id": "animal2-6",
+    "text": "随机听名称找动物；机器人有时会认错",
+    "audio": "audio/5d1e85cc60fd.mp3"
+  },
+  {
+    "id": "animal2-7",
+    "text": "在农场大图中找动物、观察身体部位、复习动作",
+    "audio": "audio/be9048f0550b.mp3"
+  },
+  {
+    "id": "animal2-8",
+    "text": "看完整农场图数一数，再说说你喜欢谁",
+    "audio": "audio/45d9572f23a9.mp3"
+  },
+  {
+    "id": "animal2-9",
+    "text": "再听一听，猜猜是谁呀！",
+    "audio": "audio/e386122d2716.mp3"
+  },
+  {
+    "id": "animal2-10",
+    "text": "不对哦！再试一次吧！",
+    "audio": "audio/1c22c3c0dc3e.mp3"
+  },
+  {
+    "id": "animal2-11",
+    "text": "你最喜欢哪个小动物？",
+    "audio": "audio/18b18aeaaef5.mp3"
+  },
+  {
+    "id": "animal2-12",
+    "text": "小马在跑",
+    "audio": "audio/dd74ddab8f78.mp3"
+  },
+  {
+    "id": "animal2-13",
+    "text": "小兔子在跳",
+    "audio": "audio/382fffb2283c.mp3"
+  }
+]
