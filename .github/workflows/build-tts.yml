@@ -18,6 +18,34 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install edge-tts
+
+      - name: Extract texts from HTML
+        run: |
+          python3 - <<'EOF'
+          import json, re
+          from pathlib import Path
+
+          htmls = sorted(Path(".").glob("*.html"))
+          print("找到 HTML:", [str(p) for p in htmls])
+          if not htmls:
+              raise SystemExit("没有找到 html 文件")
+
+          seen, texts = set(), []
+          for p in htmls:
+              html = p.read_text(encoding="utf-8")
+              for t in re.findall(r'data-tts-text="([^"]+)"', html):
+                  t = t.strip()
+                  if t and t not in seen:
+                      seen.add(t)
+                      texts.append(t)
+
+          Path("tts-texts.json").write_text(
+              json.dumps(texts, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8"
+          )
+          print(f"提取 {len(texts)} 条 -> tts-texts.json")
+          EOF
+
       - run: python generate_audio.py
 
       - name: Generate tts-tests.json
@@ -27,7 +55,6 @@ jobs:
           from pathlib import Path
 
           sub = Path.cwd().name
-
           texts = json.loads(Path("tts-texts.json").read_text(encoding="utf-8"))
 
           raw = Path("audio/tts-manifest.js").read_text(encoding="utf-8")
@@ -40,11 +67,7 @@ jobs:
               if audio is None:
                   print(f"警告: 文本没有音频: {t}")
                   continue
-              tests.append({
-                  "id": f"{sub}-{i+1}",
-                  "text": t,
-                  "audio": audio,
-              })
+              tests.append({"id": f"{sub}-{i+1}", "text": t, "audio": audio})
 
           Path("tts-tests.json").write_text(
               json.dumps(tests, ensure_ascii=False, indent=2) + "\n",
@@ -53,13 +76,13 @@ jobs:
           print(f"{sub}: {len(tests)} 条")
           EOF
 
-      - name: Commit audio
+      - name: Commit
         working-directory: .
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add animal1/audio/ animal1/tts-tests.json
-          git diff --staged --quiet || git commit -m "chore: update TTS audio for animal1"
+          git add animal1/tts-texts.json animal1/audio/ animal1/tts-tests.json
+          git diff --staged --quiet || git commit -m "chore: update TTS for animal1"
           git pull --rebase origin main || true
           git push
 
@@ -74,6 +97,34 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install edge-tts
+
+      - name: Extract texts from HTML
+        run: |
+          python3 - <<'EOF'
+          import json, re
+          from pathlib import Path
+
+          htmls = sorted(Path(".").glob("*.html"))
+          print("找到 HTML:", [str(p) for p in htmls])
+          if not htmls:
+              raise SystemExit("没有找到 html 文件")
+
+          seen, texts = set(), []
+          for p in htmls:
+              html = p.read_text(encoding="utf-8")
+              for t in re.findall(r'data-tts-text="([^"]+)"', html):
+                  t = t.strip()
+                  if t and t not in seen:
+                      seen.add(t)
+                      texts.append(t)
+
+          Path("tts-texts.json").write_text(
+              json.dumps(texts, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8"
+          )
+          print(f"提取 {len(texts)} 条 -> tts-texts.json")
+          EOF
+
       - run: python generate_audio.py
 
       - name: Generate tts-tests.json
@@ -83,7 +134,6 @@ jobs:
           from pathlib import Path
 
           sub = Path.cwd().name
-
           texts = json.loads(Path("tts-texts.json").read_text(encoding="utf-8"))
 
           raw = Path("audio/tts-manifest.js").read_text(encoding="utf-8")
@@ -96,11 +146,7 @@ jobs:
               if audio is None:
                   print(f"警告: 文本没有音频: {t}")
                   continue
-              tests.append({
-                  "id": f"{sub}-{i+1}",
-                  "text": t,
-                  "audio": audio,
-              })
+              tests.append({"id": f"{sub}-{i+1}", "text": t, "audio": audio})
 
           Path("tts-tests.json").write_text(
               json.dumps(tests, ensure_ascii=False, indent=2) + "\n",
@@ -109,12 +155,12 @@ jobs:
           print(f"{sub}: {len(tests)} 条")
           EOF
 
-      - name: Commit audio
+      - name: Commit
         working-directory: .
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add animal2/audio/ animal2/tts-tests.json
-          git diff --staged --quiet || git commit -m "chore: update TTS audio for animal2"
+          git add animal2/tts-texts.json animal2/audio/ animal2/tts-tests.json
+          git diff --staged --quiet || git commit -m "chore: update TTS for animal2"
           git pull --rebase origin main || true
           git push
