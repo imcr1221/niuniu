@@ -20,7 +20,7 @@ function play(path,text){if(audio){audio.pause();audio=null}if(!path){if(text)sa
 function speech(cat,file,text){if(audio){audio.pause();audio=null}if(text)say(text)}
 function view(name){ /* all activities remain on the same page */ }
 const STUDY=[['认识五种小动物','🐷','看图、听名称、练习“这是……”','learn'],['听叫声猜动物','🔊','听一听，是谁在叫？','sounds'],['小动物在做什么？','🎬','看视频：小马在跑，小兔子在跳','moves'],['农场数一数','🔢','看大图，自己选择数字','count'],['我喜欢……','💗','选择喜欢的小动物，说完整句子','like']];
-const HOMEWORK=[['第一天｜认识新朋友','🌟','听名称随机找动物、纠正机器人','day1'],['第二天｜农场找一找','🌳','在大场景找动物、观察特征、复习跑和跳','day2'],['第三天｜农场大聚会','🎈','看大图数动物、说“我喜欢……”','day3']];
+const HOMEWORK=[['第一天｜认识新朋友','🌟','听名称随机找动物、纠正错误','day1'],['第二天｜农场找一找','🌳','在大场景找动物、观察特征、复习跑和跳','day2'],['第三天｜农场大聚会','🎈','看大图数动物、说“我喜欢……”','day3']];
 const INFO={learn:['认识五种小动物','点击动物图片听名称，试着说“这是……”'],sounds:['听叫声猜动物','先听声音，再点击对应的小动物；下一题会换动物'],moves:['小动物在做什么？','观看自己放入的视频，学习“小马在跑”“小兔子在跳”'],count:['农场数一数','看一张完整的农场大图，听题目，点击数字作答'],like:['我喜欢……','选择喜欢的小动物，练习说完整句子'],day1:['第一天｜认识新朋友','随机听名称找动物；机器人有时会认错'],day2:['第二天｜农场找一找','在农场大图中找动物、观察身体部位、复习动作'],day3:['第三天｜农场大聚会','看完整农场图数一数，再说说你喜欢谁']};
 function menu(which){section=which;document.querySelectorAll('[data-section]').forEach(b=>{b.classList.toggle('selected',b.dataset.section===which);b.setAttribute('aria-selected',b.dataset.section===which?'true':'false')});
  const items=which==='study'?STUDY:HOMEWORK;
@@ -43,7 +43,7 @@ function sounds(b){
    <div class="actions"><button class="action" id="hear">🔊 播放动物叫声</button><button class="action secondary" id="nextSound">➡️ 下一题</button></div>
    <div class="cards">${shuffled(list).map(a=>card(a)).join('')}</div>
    <div class="feedback" id="fb" role="status" aria-live="polite">点击喇叭听声音，再选择动物</div>
-   <p class="small">真实叫声文件放在 assets/audio/animal-sounds/ 文件夹中。</p>`;
+  // <p class="small">真实叫声文件放在 assets/audio/animal-sounds/ 文件夹中。</p>`;
   const hear=()=>{
    if('speechSynthesis' in window)speechSynthesis.cancel();
    if(audio){audio.pause();audio.currentTime=0}
