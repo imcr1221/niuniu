@@ -13,7 +13,32 @@ const nav=document.getElementById('nav'),app=document.getElementById('app'),stat
 const tabs=[['learn','认识交通工具'],['listen','听一听，找一找'],['missing','谁不见了'],['uses','有什么用'],['speak','我会说']];
 let tab='learn',idx=0,lastText='',audio=null,listenTarget=null,listenChoices=[],score=0,answered=false,missingGroup=null,missingHidden=false,missingAnswer=false,speakLevel=0,speakId='bus',advancedIndex=0;
 const find=id=>vehicles.find(x=>x.id===id),shuffle=a=>[...a].sort(()=>Math.random()-.5),safe=t=>String(t).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
-function play(text){lastText=text;if(audio){audio.pause();audio=null}let path=manifest[text];if(!path){status.textContent='这句语音尚未登记：'+text;return}audio=new Audio(path);status.textContent='';audio.onerror=()=>{status.textContent='这句MP3还没有放入音频文件夹，请先运行TTS预生成流程。';};audio.play().catch(()=>{status.textContent='音频暂时无法播放，请检查MP3文件和浏览器设置。'})}
+function play(text){
+  lastText=text;
+  if(audio){audio.pause();audio=null}
+  const path=manifest[text];
+  if(!path){status.textContent='这句语音尚未登记：'+text;return}
+  const filename=path.split('/').pop();
+  const paths=[
+    'audio/'+filename,
+    'assets/audio/'+filename,
+    'audio/speech/'+filename,
+    'assets/audio/speech/'+filename
+  ];
+  let index=0;
+  status.textContent='';
+  function tryNext(){
+    if(index>=paths.length){
+      status.textContent='找不到对应的MP3文件：'+filename+'。请确认文件名与大小写一致。';
+      return;
+    }
+    const current=new Audio(paths[index++]);
+    audio=current;
+    current.onerror=tryNext;
+    current.play().catch(tryNext);
+  }
+  tryNext();
+}
 document.getElementById('repeat').onclick=()=>{if(lastText)play(lastText)};
 function button(text,phrase,extra=''){return `<button class="btn ${extra}" data-tts-text="${safe(phrase)}" data-play="${safe(phrase)}">${text}</button>`}
 function card(v,show=true){return `<button class="vehicle" data-id="${v.id}" aria-label="${v.name}"><img class="vehicle-img" src="assets/images/${v.id}.jpg" alt="" loading="lazy">${show?`<span class="name">${v.name}</span>`:''}</button>`}
