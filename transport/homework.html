@@ -10,7 +10,7 @@
 <body><div class="wrap"><div class="top"><div>🌈 中文启蒙 · 课后小游戏</div><a class="back" href="index.html">← 返回交通工具课堂</a></div><h1>🚗 交通工具大闯关</h1><p class="lead">三天小游戏 · 听一听、找一找、说一说 · 不用写字</p><div class="tabs" id="tabs"></div><div class="audio-status" id="audioStatus" role="status" aria-live="polite"></div><main class="panel" id="app"></main><div class="foot">和爸爸妈妈一起玩，慢慢说，开心最重要 🌼</div></div>
 <script type="application/json" id="tts-texts">["答对啦！你真棒！", "再试一次！", "汽车在哪里？", "自行车在哪里？", "公交车在哪里？", "火车在哪里？", "飞机在哪里？", "船在哪里？", "出租车在哪里？", "马车在哪里？", "我坐汽车去超市。", "我坐公交车去上学。", "我骑自行车去公园。", "我坐飞机去中国。", "我坐出租车去机场。", "我坐马车去公园。", "小朋友迷路了！谁来帮忙？", "老爷爷摔倒了！谁来帮忙？", "房子着火了！谁来帮忙？", "警察！警察开着警车来帮忙了！", "救护车！医生坐救护车来帮忙了！", "消防员！消防员开着消防车来救火了！"]</script>
 <!-- 同步加载 TTS 清单，确保点击按钮时可立即播放音频 -->
-<script src="assets/audio/tts-manifest.js?v=20261024-2"></script>
+<script src="audio/tts-manifest.js?v=20261024-3"></script>
 <script>
 'use strict';
 const vehicles=[['car','汽车','🚗'],['bike','自行车','🚲'],['bus','公交车','🚌'],['train','火车','🚆'],['plane','飞机','✈️'],['boat','船','⛵'],['taxi','出租车','🚕'],['carriage','马车','🐴']];
@@ -30,7 +30,7 @@ function speak(text){
   // 必须在点击事件内同步调用 audio.play()，避免失去浏览器的播放许可。
   const map=window.TTS_AUDIO;
   if(!map || typeof map!=='object'){
-    audioStatus.textContent='音频清单未加载：assets/audio/tts-manifest.js。请确认该地址能打开。';
+    audioStatus.textContent='音频清单未加载：audio/tts-manifest.js。请确认 GitHub Pages 已发布该文件。';
     return;
   }
   const ref=map[text];
@@ -39,10 +39,10 @@ function speak(text){
     return;
   }
   const name=String(ref).split('/').pop().split('?')[0];
-  // 优先使用与课堂相同的 assets/audio 目录；保留旧版 audio 目录作为后备。
+  // 工作流生成到 audio/；assets/audio/ 仅作兼容后备。
   const candidates=[
-    'assets/audio/'+name,
     'audio/'+name,
+    'assets/audio/'+name,
     'assets/audio/speech/'+name
   ];
   let i=0;
