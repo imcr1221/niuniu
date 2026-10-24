@@ -373,5 +373,65 @@
     "id": "transport-75",
     "text": "消防车来帮忙！",
     "audio": "audio/7f4a04ebeba4.mp3"
+  },
+  {
+    "id": "transport-76",
+    "text": "答对啦！你真棒！",
+    "audio": "audio/8940fc7f6513.mp3"
+  },
+  {
+    "id": "transport-77",
+    "text": "原来是马车不见了！",
+    "audio": "audio/517b14aa8728.mp3"
+  },
+  {
+    "id": "transport-78",
+    "text": "原来是自行车不见了！",
+    "audio": "audio/2dcd92b2a47d.mp3"
+  },
+  {
+    "id": "transport-79",
+    "text": "原来是汽车不见了！",
+    "audio": "audio/c2dbd917b321.mp3"
+  },
+  {
+    "id": "transport-80",
+    "text": "原来是出租车不见了！",
+    "audio": "audio/0676ab871a95.mp3"
+  },
+  {
+    "id": "transport-81",
+    "text": "原来是公交车不见了！",
+    "audio": "audio/74d01391343f.mp3"
+  },
+  {
+    "id": "transport-82",
+    "text": "原来是火车不见了！",
+    "audio": "audio/aa6b7908ec55.mp3"
+  },
+  {
+    "id": "transport-83",
+    "text": "原来是飞机不见了！",
+    "audio": "audio/8ea74d62583c.mp3"
+  },
+  {
+    "id": "transport-84",
+    "text": "原来是船不见了！",
+    "audio": "audio/f7803d91e52b.mp3"
+  },
+  {
+    "id": "transport-85",
+    "text": "原来是警车不见了！",
+    "audio": "audio/27bd12e817d8.mp3"
+  },
+  {
+    "id": "transport-86",
+    "text": "原来是救护车不见了！",
+    "audio": "audio/1429a632eb99.mp3"
+  },
+  {
+    "id": "transport-87",
+    "text": "原来是消防车不见了！",
+    "audio": "audio/854d04fd8ef2.mp3"
   }
 ]
