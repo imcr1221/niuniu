@@ -9,7 +9,8 @@
 </head>
 <body><div class="wrap"><div class="top"><div>🌈 中文启蒙 · 课后小游戏</div><a class="back" href="index.html">← 返回交通工具课堂</a></div><h1>🚗 交通工具大闯关</h1><p class="lead">三天小游戏 · 听一听、找一找、说一说 · 不用写字</p><div class="tabs" id="tabs"></div><div class="audio-status" id="audioStatus" role="status" aria-live="polite"></div><main class="panel" id="app"></main><div class="foot">和爸爸妈妈一起玩，慢慢说，开心最重要 🌼</div></div>
 <script type="application/json" id="tts-texts">["答对啦！你真棒！", "再试一次！", "汽车在哪里？", "自行车在哪里？", "公交车在哪里？", "火车在哪里？", "飞机在哪里？", "船在哪里？", "出租车在哪里？", "马车在哪里？", "我坐汽车去超市。", "我坐公交车去上学。", "我骑自行车去公园。", "我坐飞机去中国。", "我坐出租车去机场。", "我坐马车去公园。", "小朋友迷路了！谁来帮忙？", "老爷爷摔倒了！谁来帮忙？", "房子着火了！谁来帮忙？", "警察！警察开着警车来帮忙了！", "救护车！医生坐救护车来帮忙了！", "消防员！消防员开着消防车来救火了！"]</script>
-<script src="assets/audio/tts-manifest.js"></script>
+<!-- 同步加载 TTS 清单，确保点击按钮时可立即播放音频 -->
+<script src="assets/audio/tts-manifest.js?v=20261024-2"></script>
 <script>
 'use strict';
 const vehicles=[['car','汽车','🚗'],['bike','自行车','🚲'],['bus','公交车','🚌'],['train','火车','🚆'],['plane','飞机','✈️'],['boat','船','⛵'],['taxi','出租车','🚕'],['carriage','马车','🐴']];
@@ -22,20 +23,49 @@ function img(id,emoji){return `<img src="assets/images/${id}.jpg" alt="" onerror
 function escapeHTML(t){return String(t).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;')}
 // Homework is transport/homework.html. Reuse pictures and TTS from transport/assets/.
 // 与课堂共用自动生成的 TTS 清单；不调用浏览器内置朗读。
-speechMap=window.TTS_AUDIO||{};
+// 使用最新加载的清单；不能在清单加载前把它固定成空对象。
 function speak(text){
   if(currentAudio){currentAudio.pause();currentAudio=null}
   audioStatus.textContent='';
-  const ref=speechMap[text];
-  if(!ref){audioStatus.textContent='这句语音尚未登记：'+text+'。请重新运行 TTS 工作流。';return}
-  const name=ref.split('/').pop();
-  const candidates=['assets/audio/'+name,'assets/audio/speech/'+name];
+  // 必须在点击事件内同步调用 audio.play()，避免失去浏览器的播放许可。
+  const map=window.TTS_AUDIO;
+  if(!map || typeof map!=='object'){
+    audioStatus.textContent='音频清单未加载：assets/audio/tts-manifest.js。请确认该地址能打开。';
+    return;
+  }
+  const ref=map[text];
+  if(!ref){
+    audioStatus.textContent='音频清单没有这句话：'+text+'。请确认网页与清单都是最新版本。';
+    return;
+  }
+  const name=String(ref).split('/').pop().split('?')[0];
+  // 优先使用与课堂相同的 assets/audio 目录；保留旧版 audio 目录作为后备。
+  const candidates=[
+    'assets/audio/'+name,
+    'audio/'+name,
+    'assets/audio/speech/'+name
+  ];
   let i=0;
   function attempt(){
-    if(i>=candidates.length){audioStatus.textContent='找不到 MP3：'+name;return}
-    const a=new Audio(candidates[i++]);currentAudio=a;
-    a.onerror=attempt;
-    a.play().catch(attempt);
+    if(i>=candidates.length){
+      audioStatus.textContent='音频已登记，但 MP3 无法播放：'+name+'（请检查文件是否存在）';
+      return;
+    }
+    const url=candidates[i++];
+    const a=new Audio(url);
+    currentAudio=a;
+    a.onerror=()=>{if(currentAudio===a)attempt()};
+    const result=a.play();
+    if(result && typeof result.catch==='function'){
+      result.catch(err=>{
+        if(currentAudio!==a)return;
+        if(err && err.name==='NotAllowedError'){
+          audioStatus.textContent='浏览器阻止了声音播放，请再次点击朗读按钮。';
+        }else{
+          attempt();
+        }
+      });
+    }
   }
   attempt();
 }
