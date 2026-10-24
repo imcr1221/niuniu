@@ -433,5 +433,35 @@
     "id": "transport-87",
     "text": "原来是消防车不见了！",
     "audio": "audio/854d04fd8ef2.mp3"
+  },
+  {
+    "id": "transport-88",
+    "text": "小朋友迷路了！谁来帮忙？",
+    "audio": "audio/50ee0f32f03d.mp3"
+  },
+  {
+    "id": "transport-89",
+    "text": "警察！警察开着警车来帮忙了！",
+    "audio": "audio/d460addee7e4.mp3"
+  },
+  {
+    "id": "transport-90",
+    "text": "老爷爷摔倒了！谁来帮忙？",
+    "audio": "audio/de018a7030c6.mp3"
+  },
+  {
+    "id": "transport-91",
+    "text": "救护车！医生坐救护车来帮忙了！",
+    "audio": "audio/deecf6a81870.mp3"
+  },
+  {
+    "id": "transport-92",
+    "text": "房子着火了！谁来帮忙？",
+    "audio": "audio/6fc3057d1f9e.mp3"
+  },
+  {
+    "id": "transport-93",
+    "text": "消防员！消防员开着消防车来救火了！",
+    "audio": "audio/46e3d1e0b476.mp3"
   }
 ]
