@@ -9,7 +9,7 @@
 图片位于 assets/images/，音频位于 audio/。
 
 TTS
-已经包含37条预生成MP3。点击按钮直接播放，无需设备安装中文朗读声音。
+已经包含42条预生成MP3。点击按钮直接播放，无需设备安装中文朗读声音。
 固定文本使用 data-tts-text；动态文本列在 script#tts-texts 的 JSON 中。
 播放映射为 audio/tts-manifest.js 中的 window.TTS_AUDIO。
 音频生成参数：zh-CN-XiaoyiNeural，语速-25%，音高+8Hz。
@@ -20,3 +20,5 @@ generate_audio.py 会扫描同层所有HTML，合并去重并更新 tts-texts.js
 使用提示
 录音是可选功能，不上传、不自动评分。某些浏览器仅允许在HTTPS网页中录音。
 学习记录保存在当前设备的浏览器里，不会跨设备同步。
+
+第一天作业：点击图片只播放“这是什么？”。孩子先回答，再点“听答案”，例如“自行车。这是自行车。”。
