@@ -153,21 +153,14 @@ try{state={...state,...JSON.parse(localStorage.getItem(key)||'{}')}}catch(e){}
 function save(){localStorage.setItem(key,JSON.stringify(state))}
 let audio=null;function toast(t){$('#toast').textContent=t;$('#toast').hidden=false;clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>$('#toast').hidden=true,3000)}
 function say(t){
+ // 仅播放预生成并经过检查的音频，绝不调用浏览器或系统语音。
  if(audio){audio.pause();audio=null}
- if('speechSynthesis' in window) window.speechSynthesis.cancel();
  const p=window.TTS_AUDIO?.[t];
- function browserSpeak(){
-   if(!('speechSynthesis' in window)){toast('这句语音尚未生成，请重新运行GitHub Actions。');return}
-   const u=new SpeechSynthesisUtterance(t);u.lang='zh-CN';u.rate=0.86;u.pitch=1.04;
-   const voices=window.speechSynthesis.getVoices();
-   const zh=voices.find(v=>v.lang.toLowerCase()==='zh-cn')||voices.find(v=>v.lang.toLowerCase().startsWith('zh'));
-   if(zh)u.voice=zh;
-   window.speechSynthesis.speak(u);
- }
- if(!p){browserSpeak();return}
- audio=new Audio(p);
- audio.onerror=()=>{audio=null;browserSpeak()};
- audio.play().catch(()=>{audio=null;browserSpeak()});
+ if(!p){toast('这句话的语音还没有准备好。');return}
+ const current=new Audio(p);
+ audio=current;
+ current.onerror=()=>{if(audio===current){audio=null;toast('这句话的语音还没有准备好。')}};
+ current.play().catch(()=>{if(audio===current){audio=null;toast('这句话的语音还没有准备好。')}});
 }
 $('#testSound').onclick=()=>say('你好！欢迎来到交通工具中文小课堂！');
 function switchTab(id){$$('main section').forEach(s=>s.hidden=s.id!==id);$$('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));$('#main').scrollIntoView({behavior:'smooth'})}
