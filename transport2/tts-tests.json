@@ -36,8 +36,8 @@
   },
   {
     "id": "transport2-8",
-    "text": "公交车在路上跑。",
-    "audio": "audio/4f406fb9cbf5.mp3"
+    "text": "公交车在路上开。",
+    "audio": "audio/1b7c76f8156c.mp3"
   },
   {
     "id": "transport2-9",
@@ -61,8 +61,8 @@
   },
   {
     "id": "transport2-13",
-    "text": "卡车在路上跑。",
-    "audio": "audio/af342273e0f8.mp3"
+    "text": "卡车在路上开。",
+    "audio": "audio/686d065db584.mp3"
   },
   {
     "id": "transport2-14",
@@ -96,8 +96,8 @@
   },
   {
     "id": "transport2-20",
-    "text": "垃圾车在路上跑。",
-    "audio": "audio/771dcd38478c.mp3"
+    "text": "垃圾车在路上开。",
+    "audio": "audio/d2e17c1cc0f2.mp3"
   },
   {
     "id": "transport2-21",
@@ -116,43 +116,43 @@
   },
   {
     "id": "transport2-24",
-    "text": "对啦！公交车在路上跑。",
-    "audio": "audio/7100613acea5.mp3"
+    "text": "对啦！公交车在路上开。",
+    "audio": "audio/ad2d823d97e7.mp3"
   },
   {
     "id": "transport2-25",
-    "text": "对啦！卡车在路上跑。",
-    "audio": "audio/b33d85913c97.mp3"
+    "text": "对啦！卡车在路上开。",
+    "audio": "audio/11d8cf08208c.mp3"
   },
   {
     "id": "transport2-26",
-    "text": "对啦！垃圾车在路上跑。",
-    "audio": "audio/f8395df369c7.mp3"
+    "text": "对啦！垃圾车在路上开。",
+    "audio": "audio/0946030bb3c0.mp3"
   },
   {
     "id": "transport2-27",
-    "text": "对啦！小汽车在路上跑。",
-    "audio": "audio/a0cef812d3d6.mp3"
+    "text": "对啦！小汽车在路上开。",
+    "audio": "audio/3a27567565bb.mp3"
   },
   {
     "id": "transport2-28",
-    "text": "对啦！救护车在路上跑。",
-    "audio": "audio/f0e6aa18808e.mp3"
+    "text": "对啦！救护车在路上开。",
+    "audio": "audio/72d188001eae.mp3"
   },
   {
     "id": "transport2-29",
-    "text": "对啦！消防车在路上跑。",
-    "audio": "audio/9aee1c2344c2.mp3"
+    "text": "对啦！消防车在路上开。",
+    "audio": "audio/0c6d6fc344ac.mp3"
   },
   {
     "id": "transport2-30",
-    "text": "对啦！船在水里开。",
-    "audio": "audio/7678fc79a3ee.mp3"
+    "text": "对啦！船在水上开。",
+    "audio": "audio/1a83680bfe4e.mp3"
   },
   {
     "id": "transport2-31",
-    "text": "对啦！警车在路上跑。",
-    "audio": "audio/443c3593aedc.mp3"
+    "text": "对啦！警车在路上开。",
+    "audio": "audio/b8da3f5287c3.mp3"
   },
   {
     "id": "transport2-32",
@@ -176,8 +176,8 @@
   },
   {
     "id": "transport2-36",
-    "text": "小汽车在路上跑。",
-    "audio": "audio/6a24eb781329.mp3"
+    "text": "小汽车在路上开。",
+    "audio": "audio/533ed3be9ed1.mp3"
   },
   {
     "id": "transport2-37",
@@ -266,8 +266,8 @@
   },
   {
     "id": "transport2-54",
-    "text": "救护车在路上跑。",
-    "audio": "audio/4e6afebc67a2.mp3"
+    "text": "救护车在路上开。",
+    "audio": "audio/a1be689dbdcb.mp3"
   },
   {
     "id": "transport2-55",
@@ -281,8 +281,8 @@
   },
   {
     "id": "transport2-57",
-    "text": "汽车在路上跑。",
-    "audio": "audio/0632542b82ad.mp3"
+    "text": "汽车在路上开。",
+    "audio": "audio/1d08d69087f8.mp3"
   },
   {
     "id": "transport2-58",
@@ -296,8 +296,8 @@
   },
   {
     "id": "transport2-60",
-    "text": "消防车在路上跑。",
-    "audio": "audio/848899a98c20.mp3"
+    "text": "消防车在路上开。",
+    "audio": "audio/27705ce109c8.mp3"
   },
   {
     "id": "transport2-61",
@@ -336,8 +336,8 @@
   },
   {
     "id": "transport2-68",
-    "text": "船在水里开。",
-    "audio": "audio/5b88caf7209c.mp3"
+    "text": "船在水上开。",
+    "audio": "audio/0067e598cee0.mp3"
   },
   {
     "id": "transport2-69",
@@ -351,8 +351,8 @@
   },
   {
     "id": "transport2-71",
-    "text": "警车在路上跑。",
-    "audio": "audio/971dbdb9f741.mp3"
+    "text": "警车在路上开。",
+    "audio": "audio/afba3f4b278f.mp3"
   },
   {
     "id": "transport2-72",
